@@ -31,7 +31,7 @@ public class PolicyHandler{
             gift.setOrderId(payCompleted.getOrderId());
             if(payCompleted.getPrice() != null && payCompleted.getPrice() > 0) {
                 gift.setPoint(payCompleted.getPrice() * 0.5);
-                gift.setProcess("##### Payed");
+                gift.setProcess("Payed");
             }
             giftRepository.save(gift);
 
