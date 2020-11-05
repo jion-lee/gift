@@ -20,7 +20,7 @@ public class Gift {
         System.out.println("gift pre persist");
 
         if("PayCancelled".equals(process)) {
-            setPoint(0);
+            setPoint((double) 0);
             try {
                 Thread.currentThread().sleep((long) (400 + Math.random() * 220));
             } catch (InterruptedException e) {

@@ -25,17 +25,17 @@ public class PolicyHandler{
 
         // 비동기 방식으로 카프카 리스너를 통해 결제가 완료된 이벤트를 파악 -> 프로모션 포인트 제공
         if(payCompleted.isMe()){
-            System.out.println("gift_policy_wheneverPayCompleted_PointSave");
+            System.out.println("###### wheneverPayCompleted_PointSave");
 
             Gift gift = new Gift();
             gift.setOrderId(payCompleted.getOrderId());
             if(payCompleted.getPrice() != null && payCompleted.getPrice() > 0) {
-                gift.setPoint(payCompleted.getPrice() * 0.1);
-                gift.setProcess("Payed");
+                gift.setPoint(payCompleted.getPrice() * 0.5);
+                gift.setProcess("##### Payed");
             }
             giftRepository.save(gift);
 
-            System.out.println("##### listener PayComplete : " + payCompleted.toJson());
+            System.out.println("##### wheneverPayCompleted_PointSave End : " + payCompleted.toJson());
         }
     }
 
