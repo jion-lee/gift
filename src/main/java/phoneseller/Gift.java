@@ -5,8 +5,8 @@ import org.springframework.beans.BeanUtils;
 import java.util.List;
 
 @Entity
-@Table(name="Promotion_table")
-public class Promotion {
+@Table(name="Gift_table")
+public class Gift {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -17,48 +17,48 @@ public class Promotion {
 
     @PrePersist
     public void onPrePersist() {
-        System.out.println("promotion pre persist");
+        System.out.println("gift pre persist");
     }
 
     @PostPersist
     public void onPostPersist(){
         System.out.println(this.toString());
-        System.out.println("promotion persist");
+        System.out.println("gift persist");
 
         if("Payed".equals(process) && point > 0){
             // 결제 완료된 이벤트를 통해 프로모션 제공 완료 처리
 
-            PromoCompleted promoCompleted = new PromoCompleted();
-            BeanUtils.copyProperties(this, promoCompleted);
-            promoCompleted.publish();
+            GiftCompleted giftCompleted = new GiftCompleted();
+            BeanUtils.copyProperties(this, giftCompleted);
+            giftCompleted.publish();
 
             System.out.println("*** 프로모션 포인트 제공 완료 ***");
         } else if("PayCancelled".equals(process)){
-            PromoCancelled promoCancelled = new PromoCancelled();
-            BeanUtils.copyProperties(this, promoCancelled);
-            promoCancelled.publish();
+            GiftCancelled giftCancelled = new GiftCancelled();
+            BeanUtils.copyProperties(this, giftCancelled);
+            giftCancelled.publish();
             System.out.println("*** 결제 취소로 인한 프로모션 포인트 제공 회수 ***");
         }
     }
 
     @PreUpdate
     public void onPreUpdate(){
-        System.out.println("promotion pre update");
+        System.out.println("gift pre update");
     }
 
     @PostUpdate
     public void onPostUpdate(){
-        System.out.println("promotion post update");
+        System.out.println("gift post update");
     }
 
     @PreRemove
     public void onPreRemove(){
-        System.out.println("promotion pre remove");
+        System.out.println("gift pre remove");
     }
 
     @PostRemove
     public void onPostRemove(){
-        System.out.println("promotion post remove");
+        System.out.println("gift post remove");
     }
 
     public Long getId() {
@@ -93,7 +93,7 @@ public class Promotion {
 
     @Override
     public String toString() {
-        return "Promotion{" +
+        return "Gift{" +
                 "id=" + id +
                 ", orderId=" + orderId +
                 ", point=" + point +

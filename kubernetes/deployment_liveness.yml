@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: promotion
+  name: gift
   namespace: pp82
   labels:
-    app: promotion
+    app: gift
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: promotion
+      app: gift
   template:
     metadata:
       labels:
-        app: promotion
+        app: gift
     spec:
       containers:
-        - name: promotion
-#          image: username/promotion:latest
-          image: admin37.azurecr.io/promotion:latest
+        - name: gift
+#          image: username/gift:latest
+          image: admin29.azurecr.io/gift:latest
           ports:
             - containerPort: 8080
           readinessProbe:
