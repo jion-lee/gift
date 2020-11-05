@@ -18,6 +18,15 @@ public class Gift {
     @PrePersist
     public void onPrePersist() {
         System.out.println("gift pre persist");
+
+        if("PayCancelled".equals(process)) {
+            setPoint(0);
+            try {
+                Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @PostPersist
